@@ -103,6 +103,11 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
                     pressed = false;
                 }
                 return false;
+            case MotionEvent.ACTION_CANCEL:
+                effect(false);
+                released = true;
+                pressed = false;
+                return false;
             default: return false;
         }
     }
