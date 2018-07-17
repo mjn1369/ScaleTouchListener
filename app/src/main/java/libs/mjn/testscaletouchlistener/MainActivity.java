@@ -20,11 +20,11 @@ import libs.mjn.scaletouchlistener.ScaleTouchListener;
 public class MainActivity extends AppCompatActivity {
 
     CardView cv_dog;
-    TextView tv_submit;
+    TextView tv_next;
     FloatingActionButton fab_share, fab_heart, fab_dislike;
     AppCompatSeekBar sb_duration, sb_scale, sb_alpha;
     TextView tv_durationValue, tv_scaleValue, tv_alphaValue;
-    ScaleTouchListener listener_dog, listener_submit, listener_share, listener_heart, listener_dislike;
+    ScaleTouchListener listener_dog, listener_next, listener_share, listener_heart, listener_dislike;
     ScaleTouchListener.Config config;
 
     @Override
@@ -36,9 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViews(){
         cv_dog = (CardView) findViewById(R.id.cv_dog);
+        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        cv_dog.getLayoutParams().height = (int) (size.x * 0.48);
 
-        tv_submit = (TextView) findViewById(R.id.tv_submit);
-        setTypeFaceRegular(tv_submit);
+        tv_next = (TextView) findViewById(R.id.tv_submit);
+        setTypeFaceRegular(tv_next);
         fab_share = (FloatingActionButton) findViewById(R.id.fab_share);
         fab_heart = (FloatingActionButton) findViewById(R.id.fab_heart);
         fab_dislike = (FloatingActionButton) findViewById(R.id.fab_dislike);
@@ -49,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         sb_duration.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tv_durationValue.setText("Value: "+progress);
+                tv_durationValue.setText("Value: "+progress+"ms");
             }
 
             @Override
@@ -107,31 +112,31 @@ public class MainActivity extends AppCompatActivity {
         listener_dog = new ScaleTouchListener(config) {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Dog Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Dog",Toast.LENGTH_SHORT).show();
             }
         };
-        listener_submit = new ScaleTouchListener(config) {
+        listener_next = new ScaleTouchListener(config) {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Submit Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Next Dog",Toast.LENGTH_SHORT).show();
             }
         };
         listener_share = new ScaleTouchListener(config) {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Share Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Share",Toast.LENGTH_SHORT).show();
             }
         };
         listener_heart = new ScaleTouchListener(config) {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Heart Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Heart",Toast.LENGTH_SHORT).show();
             }
         };
         listener_dislike = new ScaleTouchListener(config) {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Dislike Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Dislike",Toast.LENGTH_SHORT).show();
             }
         };
         sb_duration.setProgress(config.getDuration());
@@ -139,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         sb_alpha.setProgress((int) (config.getAlpha()*100));
 
         cv_dog.setOnTouchListener(listener_dog);
-        tv_submit.setOnTouchListener(listener_submit);
+        tv_next.setOnTouchListener(listener_next);
         fab_share.setOnTouchListener(listener_share);
         fab_heart.setOnTouchListener(listener_heart);
         fab_dislike.setOnTouchListener(listener_dislike);
@@ -147,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateListeners(ScaleTouchListener.Config config){
         listener_dog.setConfig(config);
-        listener_submit.setConfig(config);
+        listener_next.setConfig(config);
         listener_share.setConfig(config);
         listener_heart.setConfig(config);
         listener_dislike.setConfig(config);
