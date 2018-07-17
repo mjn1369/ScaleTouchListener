@@ -11,11 +11,13 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
+import java.lang.ref.WeakReference;
+
 public abstract class ScaleTouchListener implements View.OnTouchListener, View.OnClickListener {
 
     private final int DURATION = 100;
-    private final float SCALE = 0.85f;
-    private final float ALPHA = 0.75f;
+    private final float SCALE = 0.9f;
+    private final float ALPHA = 0.4f;
     private long touchTime, diffTime;
 
     ObjectAnimator
@@ -25,6 +27,7 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
     AnimatorSet downSet, upSet;
     AnimatorListenerAdapter finalAnimationListener;
 
+    private WeakReference<View> mView;
     private boolean createdAnimators = false;
     private boolean pressed = false, released = true;
     private Rect rect;
@@ -38,13 +41,13 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
         this.config = config;
     }
 
-    private void createAnimators(final View v) {
-        alphaDownAnimator = ObjectAnimator.ofFloat(v, "alpha", config.getAlpha());
-        alphaUpAnimator = ObjectAnimator.ofFloat(v, "alpha", 1.0f);
-        scaleXDownAnimator = ObjectAnimator.ofFloat(v, "scaleX", config.getScaleDown());
-        scaleXUpAnimator = ObjectAnimator.ofFloat(v, "scaleX", 1.0f);
-        scaleYDownAnimator = ObjectAnimator.ofFloat(v, "scaleY", config.getScaleDown());
-        scaleYUpAnimator = ObjectAnimator.ofFloat(v, "scaleY", 1.0f);
+    private void createAnimators() {
+        alphaDownAnimator = ObjectAnimator.ofFloat(mView.get(), "alpha", config.getAlpha());
+        alphaUpAnimator = ObjectAnimator.ofFloat(mView.get(), "alpha", 1.0f);
+        scaleXDownAnimator = ObjectAnimator.ofFloat(mView.get(), "scaleX", config.getScaleDown());
+        scaleXUpAnimator = ObjectAnimator.ofFloat(mView.get(), "scaleX", 1.0f);
+        scaleYDownAnimator = ObjectAnimator.ofFloat(mView.get(), "scaleY", config.getScaleDown());
+        scaleYUpAnimator = ObjectAnimator.ofFloat(mView.get(), "scaleY", 1.0f);
 
         downSet = new AnimatorSet();
         downSet.setDuration(config.getDuration());
@@ -60,28 +63,30 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                onClick(v);
+                onClick(mView.get());
             }
         };
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        if(mView==null)
+            mView=new WeakReference<>(v);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                setRect(v);
+                setRect();
                 touchTime = System.currentTimeMillis();
                 if (!pressed) {
-                    effect(v, true);
+                    effect(true);
                     pressed = true;
                     released = false;
                 }
                 return true;
             case MotionEvent.ACTION_MOVE:
                 if (!released) {
-                    setRect(v);
+                    setRect();
                     if (!insideView(event)) {
-                        effect(v, false);
+                        effect(false);
                         released = true;
                         pressed = false;
                     }
@@ -89,11 +94,11 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
                 return false;
             case MotionEvent.ACTION_UP:
                 if (!released) {
-                    setRect(v);
+                    setRect();
                     if (insideView(event)) {
                         upSet.addListener(finalAnimationListener);
                     }
-                    effect(v, false);
+                    effect(false);
                     released = true;
                     pressed = false;
                 }
@@ -108,10 +113,10 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
         return x>=getRect().left && x<=getRect().right && y<=getRect().bottom && y>=getRect().top;
     }
 
-    private void setRect(View v) {
+    private void setRect() {
         if (rect == null) {
             rect = new Rect();
-            v.getGlobalVisibleRect(rect);
+            mView.get().getGlobalVisibleRect(rect);
         }
     }
 
@@ -119,10 +124,10 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
         return rect;
     }
 
-    private void effect(View v, boolean press) {
+    private void effect(boolean press) {
 
         if (!createdAnimators) {
-            createAnimators(v);
+            createAnimators();
             createdAnimators = true;
         }
 
@@ -139,6 +144,16 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
             upSet.cancel();
             upSet.start();
         }
+    }
+
+    public Config getConfig() {
+        return config;
+    }
+
+    public void setConfig(Config config) {
+        this.config = config;
+        if(mView!=null)
+            createAnimators();
     }
 
     public static class Config {
