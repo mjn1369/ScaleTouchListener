@@ -6,8 +6,10 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.graphics.Rect;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
@@ -56,7 +58,7 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
 
         upSet = new AnimatorSet();
         upSet.setDuration(config.getDuration());
-        upSet.setInterpolator(new DecelerateInterpolator());
+        upSet.setInterpolator(new FastOutSlowInInterpolator());
         upSet.playTogether(alphaUpAnimator, scaleXUpAnimator, scaleYUpAnimator);
 
         finalAnimationListener = new AnimatorListenerAdapter() {
