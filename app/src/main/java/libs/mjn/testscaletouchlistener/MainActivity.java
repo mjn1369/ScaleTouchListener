@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        config = new ScaleTouchListener.Config(100,0.95f,0.4f);
+        config = new ScaleTouchListener.Config(100,0.90f,0.5f);
         listener_dog = new ScaleTouchListener(config) {
             @Override
             public void onClick(View v) {
