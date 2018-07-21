@@ -37,3 +37,13 @@ dependencies {
    compile 'com.github.mjn1369:ScaleTouchListener:1.0.0'
 }
 ```
+
+## Usage
+```java
+fab_heart.setOnTouchListener(new ScaleTouchListener() {
+            @Override
+            public void onClick(View v) {
+                // Do your thing
+            }
+        });
+```
