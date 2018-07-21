@@ -39,12 +39,22 @@ dependencies {
 ```
 
 ## Usage
-### Default Setting
+### Default Settings
 ```java
 fab_heart.setOnTouchListener(new ScaleTouchListener() {
             @Override
             public void onClick(View v) {
-                // Do your thing
+                Toast.makeText(mContext,"Heart",Toast.LENGTH_SHORT).show();
+            }
+        });
+```
+### Custom Settings
+```java
+ScaleTouchListener.Config config = new ScaleTouchListener.Config(300,0.75f,0.75f);
+fab_heart.setOnTouchListener(new ScaleTouchListener(config) {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
             }
         });
 ```
