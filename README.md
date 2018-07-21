@@ -54,9 +54,7 @@ ScaleTouchListener.Config config = new ScaleTouchListener.Config(
                         300,    // Duration
                         0.75f,  // ScaleDown
                         0.75f); // Alpha
-fab_heart.setOnTouchListener(new ScaleTouchListener(```
-<b>config</b>
-```java) {
+fab_heart.setOnTouchListener(new ScaleTouchListener(__config__) {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
