@@ -69,8 +69,8 @@ fab_heart.setOnTouchListener(new ScaleTouchListener(config) {     // <--- pass c
 |            Attribute            |            Description            |            Default            |
  | ------------------------------- | -------------------------------   | --------------------------    |
  | ```Duration  (int)```|The whole shebang's duration|```100 (milliseconds)```|
- | ```ScaleDown (float)```|ScaleDown Degree between 0.0f and 1.0f|```0.9f```|
- | ```Alpha (float)```|Alpha Degree between 0.0f and 1.0f|```0.4f```|
+ | ```ScaleDown (float)```|ScaleDown degree between 0.0f and 1.0f|```0.9f```|
+ | ```Alpha (float)```|Alpha degree between 0.0f and 1.0f|```0.4f```|
  
  cheers :beers:
  
