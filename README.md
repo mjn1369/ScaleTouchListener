@@ -34,6 +34,6 @@ Add this to your app build.gradle:
 
 ```
 dependencies {
-   compile 'com.github.mjn1369:scaletouchlistener:1.0.0'
+   compile 'com.github.mjn1369:ScaleTouchListener:1.0.0'
 }
 ```
