@@ -49,7 +49,7 @@ fab_heart.setOnTouchListener(new ScaleTouchListener() {
         });
 ```
 ### Custom Settings
-`
+```
 ScaleTouchListener.Config config = new ScaleTouchListener.Config(
                         300,    // Duration
                         0.75f,  // ScaleDown
@@ -60,4 +60,4 @@ fab_heart.setOnTouchListener(new ScaleTouchListener(`**`config`**`) {
                 Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
             }
         });
-`
+```
