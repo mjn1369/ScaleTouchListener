@@ -51,10 +51,12 @@ fab_heart.setOnTouchListener(new ScaleTouchListener() {
 ```
 ### Custom Settings
 ```java
+//create custom config object
 ScaleTouchListener.Config config = new ScaleTouchListener.Config(
                         300,    // Duration
                         0.75f,  // ScaleDown
                         0.75f); // Alpha
+                        
 fab_heart.setOnTouchListener(new ScaleTouchListener(config) {     // <--- pass config object
             @Override
             public void onClick(View v) {
