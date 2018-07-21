@@ -44,6 +44,7 @@ dependencies {
 fab_heart.setOnTouchListener(new ScaleTouchListener() {
             @Override
             public void onClick(View v) {
+                //OnClickListener
                 Toast.makeText(mContext,"Heart",Toast.LENGTH_SHORT).show();
             }
         });
@@ -57,6 +58,7 @@ ScaleTouchListener.Config config = new ScaleTouchListener.Config(
 fab_heart.setOnTouchListener(new ScaleTouchListener(config) {     // <--- pass config object
             @Override
             public void onClick(View v) {
+                //OnClickListener
                 Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
             }
         });
