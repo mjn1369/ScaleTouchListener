@@ -17,3 +17,23 @@
 <div align="center">
 <img src="https://raw.githubusercontent.com/mjn1369/ScaleTouchListener/master/Screenshot/screenshot.gif"/>
 </div>
+
+## Download
+### Gradle:
+Add the following to your project level build.gradle:
+
+```
+allprojects {
+   repositories {
+      maven { url "https://jitpack.io" }
+   }
+}
+```
+
+Add this to your app build.gradle:
+
+```
+dependencies {
+   compile 'com.github.mjn1369:scaletouchlistener:1.0.0'
+}
+```
