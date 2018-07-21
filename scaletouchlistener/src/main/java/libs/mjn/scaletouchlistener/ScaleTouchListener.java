@@ -169,9 +169,9 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
         private float alpha;
 
         public Config(int duration, float scaleDown, float alpha) {
-            this.duration = duration;
-            this.scaleDown = scaleDown;
-            this.alpha = alpha;
+            setDuration(duration);
+            setScaleDown(scaleDown);
+            setAlpha(alpha);
         }
 
         public int getDuration() {
@@ -179,6 +179,8 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
         }
 
         public void setDuration(int duration) {
+            if(duration<0)
+                duration=0;
             this.duration = duration;
         }
 
@@ -187,6 +189,10 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
         }
 
         public void setScaleDown(float scaleDown) {
+            if(scaleDown<0)
+                scaleDown=0;
+            if(scaleDown>1)
+                scaleDown=1;
             this.scaleDown = scaleDown;
         }
 
@@ -195,6 +201,10 @@ public abstract class ScaleTouchListener implements View.OnTouchListener, View.O
         }
 
         public void setAlpha(float alpha) {
+            if(alpha<0)
+                alpha=0;
+            if(alpha>1)
+                alpha=1;
             this.alpha = alpha;
         }
     }
