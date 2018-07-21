@@ -39,6 +39,7 @@ dependencies {
 ```
 
 ## Usage
+### Default Setting
 ```java
 fab_heart.setOnTouchListener(new ScaleTouchListener() {
             @Override
