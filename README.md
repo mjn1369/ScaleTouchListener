@@ -61,7 +61,7 @@ fab_heart.setOnTouchListener(new ScaleTouchListener(config) {     // <--- pass c
             @Override
             public void onClick(View v) {
                 //OnClickListener
-                Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Heart", Toast.LENGTH_SHORT).show();
             }
         });
 ```
@@ -69,8 +69,8 @@ fab_heart.setOnTouchListener(new ScaleTouchListener(config) {     // <--- pass c
 |            Attribute            |            Description            |            Default            |
  | ------------------------------- | -------------------------------   | --------------------------    |
  | ```Duration  (int)```|The whole shebang's duration|```100 (milliseconds)```|
- | ```ScaleDown (float)```|ScaleDown degree between 0.0f and 1.0f|```0.9f```|
- | ```Alpha (float)```|Alpha degree between 0.0f and 1.0f|```0.4f```|
+ | ```ScaleDown (float)```|ScaleDown value between 0.0f and 1.0f|```0.9f```|
+ | ```Alpha (float)```|Alpha degree value 0.0f and 1.0f|```0.4f```|
  
  cheers :beers:
  
