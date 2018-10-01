@@ -5,11 +5,14 @@
 [LicenseBadge]:   https://img.shields.io/badge/License-Apache_v2.0-blue.svg
 [JitpackBadge]:   https://jitpack.io/v/mjn1369/ScaleTouchListener.svg
 [JitpackUrl]:    https://jitpack.io/#mjn1369/ScaleTouchListener
+[AndroidArsenalUrl]: https://android-arsenal.com/details/1/7134
+[AndroidArsenalBadge]:   https://img.shields.io/badge/Android%20Arsenal-ScaleTouchListener-green.svg?style=flat
 # ScaleTouchListener
 [![Platform][PlatformBadge]][ProjectGithubUrl]
 [![Api][ApiBadge]][ProjectGithubUrl]
 [![License][LicenseBadge]][ProjectLicenceUrl]
 [![JitpackBadge]][JitpackUrl]
+[![AndroidArsenalBadge]][AndroidArsenalUrl]
 
 # ScaleTouchListener
 ```ScaleTouchListener``` is an Android library that makes your view to scale down (and also fade down) on touch press and scales it back up on touch being released. It also includes a click listener in case the touch releases inside the view (without leaving it).
