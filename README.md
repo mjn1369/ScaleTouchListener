@@ -44,7 +44,7 @@ dependencies {
 ## Usage
 ### Default Settings
 ```java
-fab_heart.setOnTouchListener(new ScaleTouchListener() {
+fabHeart.setOnTouchListener(new ScaleTouchListener() {
             @Override
             public void onClick(View v) {
                 //OnClickListener
@@ -60,7 +60,7 @@ ScaleTouchListener.Config config = new ScaleTouchListener.Config(
                         0.75f,  // ScaleDown
                         0.75f); // Alpha
                         
-fab_heart.setOnTouchListener(new ScaleTouchListener(config) {     // <--- pass config object
+fabHeart.setOnTouchListener(new ScaleTouchListener(config) {     // <--- pass config object
             @Override
             public void onClick(View v) {
                 //OnClickListener
